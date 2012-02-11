@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget 
+	xmlns = "http://www.w3.org/ns/widgets"
+	xmlns:gap = "http://phonegap.com/ns/1.0"
+	id = "net.faithoflife.SKC"
+	version = "2.0.2">
+	
+	<name>
+		Sayeda Khadija Centre
+	</name>
+	
+	<description>
+		Get information on what's happening at the Sayeda Khadija Centre 
+	</description>
+
+	<author href="http://alunny.github.com" email="faithoflifedev@gmail.com">
+		Faith of Life Network - Developer
+	</author>
+	
+	<access uri="*" />
+
+<!--
+	<gap:platforms>
+		<gap:platform name="ios" />
+		<gap:platform name="android" minVersion="2.1" />
+		<gap:platform name="webos" />
+		<gap:platform name="symbian.wrt" />
+		<gap:platform name="blackberry" project="widgets"/>
+	</gap:platforms>
+-->
+
+	<icon src="assets/skcicon72.png" width="72" height="72" />
+	<icon src="assets/skcicon48.png" width="48" height="48" />
+	<icon src="assets/skcicon36.png" width="36" height="36" />
+
+	<icon src="assets/skcicon57.png" width="57" height="57"/>
+	<icon src="assets/skcicon72.png" width="72" height="72"/>
+	<icon src="assets/skcicon114.png" width="114" height="114"/>
+
+    <gap:splash src="assets/skcsplash.png" width="320" height="480" />
+    <gap:splash src="assets/skcretina.png" width="640" height="960" />
+    <gap:splash src="assets/ipadportrait.png" width="768" height="1004"/>
+	<gap:splash src="assets/ipadlandscape.png" width="1024" height="748"/>
+
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+
+	<preference name="phonegap-version" value="1.3.0" />
+	<preference name="orientation" value="default" />
+	<preference name="target-device" value="universal" />
+</widget>

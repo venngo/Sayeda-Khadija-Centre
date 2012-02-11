@@ -1,0 +1,69 @@
+#skc_events li a {
+    text-decoration: none;
+    white-space: normal;
+}
+
+#skc_events li a p {
+    padding-top: 8px;
+    text-decoration: none;
+    white-space: normal;
+}
+
+#skc_header {
+    white-space: nowrap;
+}
+
+.bnr_top {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input.error {
+    border: 2px solid red;
+}
+
+table {
+    width: 100%;
+}
+
+table thead th {
+    text-align: left;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+table thead th:nth-child(2), th:nth-child(3) {
+    text-align: right;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+table tfoot td {
+    text-align: center;
+}
+
+table th {
+    text-align: left;
+    padding: 6px;
+}
+
+table td {
+    text-align: right;
+    padding: 6px;
+}
+
+.cntr {
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.cntr_blk {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.dwn {
+    padding-top: 5px;
+}

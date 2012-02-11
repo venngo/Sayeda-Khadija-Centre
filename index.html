@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	
+	<script type="text/javascript" src="phonegap.js" charset="utf-8"></script>
+	
+	<link rel="stylesheet" href="css/jquerymobile10min.css" type="text/css" />
+	<link rel="stylesheet" href="css/my.css" type="text/css" />
+	
+	<script type="text/javascript" src="js/jquery164min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="js/my.js" charset='utf-8'></script>
+	
+  </head>
+  
+  <body>
+<div id="pg_offline" data-role="dialog">
+    <div id="skc_header_offline" data-role="header" data-backbtn="false">
+        <h1 class="txt_sm">Offline</h1>
+    </div>
+    
+    <div data-role="content">
+        <p>The Sayeda Khadija Centre app has been switched to offline functionality.</p>
+    </div>
+</div>
+
+
+<div id="pg_events" data-role="page">
+    <div id="skc_header_events" data-role="header" data-backbtn="false">
+        <a href="#pg_events" id="refreshEvents" data-icon="refresh" data-iconpos="notext" class="ui-btn-right" rel="external">Refresh</a>
+        <h1 class="txt_sm">Events</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pg_events" data-role="button" data-iconpos="top" data-icon="grid">Events</a></li>
+                <li><a href="#pg_salaat" data-role="button" data-iconpos="top" data-icon="star">Salaat</a></li>
+                <li><a href="#pg_map" data-role="button" data-iconpos="top" data-icon="home">Map</a></li>
+                <li><a href="#pg_donate" data-role="button" data-iconpos="top" data-icon="plus">Donate</a></li>
+                <li><a href="#pg_about" data-role="button" data-iconpos="top" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div data-role="content">
+        <ul id="skc_events" data-role="listview" data-theme="c" data-dividertheme="b"></ul>
+    </div>
+</div>
+
+
+<div id="dlg_leaving" data-role="page" data-fullscreen='true'>
+    <div id="skc_header_leaving" data-role="header">
+        <h1 class="txt_sm">Notice</h1>
+    </div>
+    <div data-role="content">
+        <p>This action will redirect you to the Sayeda Khadija Centre web site by opening a browser window on your device.</p>
+            <a href="#" id='continue' data-role="button">Continue</a>
+    </div>
+</div>
+
+
+<div id="pg_salaat" data-role="page">
+    <div id="skc_header_salaat" data-role="header" data-backbtn="false">
+        <a href="#pg_salaat" id="refreshSalaat" data-icon="refresh" data-iconpos="notext" class="ui-btn-right" rel="external">Refresh</a>
+        <h1 class="txt_sm">Salaat Times</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pg_events" data-role="button" data-iconpos="top" data-icon="grid">Events</a></li>
+                <li><a href="#pg_salaat" data-role="button" data-iconpos="top" data-icon="star">Salaat</a></li>
+                <li><a href="#pg_map" data-role="button" data-iconpos="top" data-icon="home">Map</a></li>
+                <li><a href="#pg_donate" data-role="button" data-iconpos="top" data-icon="plus">Donate</a></li>
+                <li><a href="#pg_about" data-role="button" data-iconpos="top" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div data-role="content">
+        <img class="bnr_top" src="images/prayerhall600x200.jpg" />
+        <table class="txt_sm">
+            <thead >
+                <tr class='bkg'>
+                    <th scope="col">Prayer</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Iqama</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><div id='h_dt' class='bkg'></div></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><div id='g_dt' class='bkg'></div></td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <th scope="row">Fajr</th>
+                    <td><div id='fajr_s'></div></td>
+                    <td><div id='fajr_i'></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">Sunrise</th>
+                    <td><div id='sunr_s'></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Dhuhr</th>
+                    <td><div id='dhuhr_s'></div></td>
+                    <td><div id='dhuhr_i'></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">Asr</th>
+                    <td><div id='asr_s'></div></td>
+                    <td><div id='asr_i'></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">Maghrib</th>
+                    <td><div id='mag_s'></div></td>
+                    <td><div id='mag_i'></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">Isha</th>
+                    <td><div id='isha_s'></div></td>
+                    <td><div id='isha_i'></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">Jumah</th>
+                    <td>1:30 PM</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="pg_map" data-role="page">
+    <div id="skc_header_map" data-role="header" data-backbtn="false">
+        <h1 class="txt_sm">Map</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pg_events" data-role="button" data-iconpos="top" data-icon="grid">Events</a></li>
+                <li><a href="#pg_salaat" data-role="button" data-iconpos="top" data-icon="star">Salaat</a></li>
+                <li><a href="#pg_map" data-role="button" data-iconpos="top" data-icon="home">Map</a></li>
+                <li><a href="#pg_donate" data-role="button" data-iconpos="top" data-icon="plus">Donate</a></li>
+                <li><a href="#pg_about" data-role="button" data-iconpos="top" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id='cnt_map' data-role="content">
+        <p id='addr' class='txt_md cntr'>7150 Edwards Blvd.  Mississauga, Ontario</p>
+        <div id="map_canvas"></div>
+    </div>
+</div>
+
+<div id="pg_donate" data-role="page">
+    <div id="skc_header_donate" data-role="header">
+        <h1 class="txt_sm">Donate</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pg_events" data-role="button" data-iconpos="top" data-icon="grid">Events</a></li>
+                <li><a href="#pg_salaat" data-role="button" data-iconpos="top" data-icon="star">Salaat</a></li>
+                <li><a href="#pg_map" data-role="button" data-iconpos="top" data-icon="home">Map</a></li>
+                <li><a href="#pg_donate" data-role="button" data-iconpos="top" data-icon="info">Donate</a></li>                
+                <li><a href="#pg_about" data-role="button" data-iconpos="top" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div data-role="content">
+        <img class="cntr_blk" src="images/support.png" />
+        <ul id='skc_type' data-role="listview">
+            <li data-identity="Sadaqa"><a href="#dlg_leaving">Sadaqa</a></li>
+            <li data-identity="Project Donation"><a href="#dlg_leaving">Project Donation</a></li>
+            <li data-identity="Zakat"><a href="#dlg_leaving">Zakat</a></li>
+            <li data-identity="Zakat-ul-Fittr"><a href="#dlg_leaving">Zakat-ul-Fittr</a></li>
+            <li data-identity="Musalla"><a href="#dlg_leaving">Musalla</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="pg_about" data-role="page">
+    <div id="skc_header_about" data-role="header" data-backbtn="false">
+        <h1 class="txt_sm">About</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pg_events" data-role="button" data-iconpos="top" data-icon="grid">Events</a></li>
+                <li><a href="#pg_salaat" data-role="button" data-iconpos="top" data-icon="star">Salaat</a></li>
+                <li><a href="#pg_map" data-role="button" data-iconpos="top" data-icon="home">Map</a></li>
+                <li><a href="#pg_donate" data-role="button" data-iconpos="top" data-icon="plus">Donate</a></li>
+                <li><a href="#pg_about" data-role="button" data-iconpos="top" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div data-role="content">
+        <h3 class="cntr">A place to play, pray and learn.</h3>
+        <img class="bnr_top" src="images/mosquepic500x160.jpg" />
+        <p><a id='website' href="http://www.sayedakhadijacentre.com" data-role="button">web site</a></p>
+        <p><a id='email'  href="email: info@skcentre.com" data-role="button">email</a></p>
+        <p><a href="tel: +19055645509" data-role="button">call</a></p>
+        <p class="txt_md dwn">As of early August 2009, the Sayeda Khadija Centre has become the official home of Faith of Life Network, an organization founded by Imam Hamid Slimi in 2005 to promote the positive value of Islam for Muslims and non-Muslims alike in Canada and around the world, by building communities through shared religious observance, quality educational programs, mutual support and networking, and service to humanity.</p>
+    </div>
+</div>
+  </body>
+</html>
