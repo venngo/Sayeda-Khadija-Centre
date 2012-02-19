@@ -8,9 +8,9 @@
 
 var is_online = true;
 
-$.getScript( 'js/jquerygmapmin.js' );
 $.getScript( 'js/jquerymobile10min.js' );
 $.getScript( 'js/jqueryyql.js' );
+$.getScript( 'js/jqueryuimapmin.js' );
 $.getScript( 'phonegap.js' );
 
 if ( ! Connection )
@@ -112,45 +112,52 @@ function pg_events()
         {},
         function ( response )
         {
-        	if ( ! response.query.results )
-        		return;
-        		
-            var arr_data = response.query.results.item;
-          
-              var dt = null;
-          
-              var last_dt = null;
-          
-              var title = null
-          
-              $.mobile.hidePageLoadingMsg();
+        	var arr_data = [];
+        	
+            if ( ! response.query.results )
+            {
+            	$( '#skc_events' ).parent().append( '<p>There are no events listed at this time.</p>' );
             
-              $( '#skc_events' ).empty();
+            	return;
+            }
+            
+            if ( response.query.results.item.length == undefined )
+            	arr_data.push( response.query.results.item );
+          	else
+            	arr_data = response.query.results.item;
+            
+            var dt = null;
           
-              $.each(
-                arr_data,
+            var last_dt = null;
+          
+            var title = null
+          
+            $.mobile.hidePageLoadingMsg();
+            
+            $( '#skc_events' ).empty();
+            
+            $.each(
+            	arr_data,
                 function( index, item )
                 {
                     var arr_title = item.title.split( ':' );
                  
-                     dt = arr_title[0] + ':' + arr_title[1];
+                    dt = arr_title[0] + ':' + arr_title[1];
                  
-                     title = arr_title[2];
+                    title = arr_title[2];
                  
-                     if ( dt != last_dt )
-                     {
-                         $( '#skc_events' ).append( "<li data-role='list-divider'>" + dt + "</li>" );
+                    if ( dt != last_dt )
+                    {
+                        $( '#skc_events' ).append( "<li data-role='list-divider'>" + dt + "</li>" );
                          
-                         last_dt = dt;
-                     }
+                		last_dt = dt;
+                    }
                  
-//                     $( '#skc_events' ).append( '<li><a class="ui-link" rel="external" target="_blank" href="' + item.link + '">' + title + '<p>' + item.description + '</p></a></li>' );
-                    
-                    $( '#skc_events' ).append( '<li data-identity="' + item.link + '"><a href="#dlg_leaving" data-rel="dialog" data-transition="flip">' + title + '<p>' + item.description + '</p></a></li>' );
+                	$( '#skc_events' ).append( '<li data-identity="' + item.link + '"><a href="#dlg_leaving" data-rel="dialog" data-transition="flip">' + title + '<p>' + item.description + '</p></a></li>' );
                 }
             );
           
-              $( "#skc_events" ).listview( "refresh" );
+            $( "#skc_events" ).listview( "refresh" );
         }
     );    
 }
@@ -174,12 +181,12 @@ function pg_salaat()
           
               maghrib_min = parseInt( arr_maghrib[1] );
           
-              var dn = ( maghrib_min < 5 );
+              var up = ( maghrib_min > 55 );
           
-              maghrib_min = dn ? ( 55 + maghrib_min ) : ( maghrib_min - 5 );
+              maghrib_min = up ? ( maghrib_min - 55 ) : ( maghrib_min + 5 );
           
-              if ( dn )
-                  maghrib_hr = parseInt( maghrib_hr ) - 1;
+              if ( up )
+                  maghrib_hr = parseInt( maghrib_hr ) + 1;
           
               if ( maghrib_min < 10 )
                   maghrib_min = '0' + maghrib_min;
@@ -218,8 +225,33 @@ function pg_map()
 	$( '#map_canvas' ).width( window.innerWidth - $('#map_canvas').position().left - $('#map_canvas').offset().left );
    
     $( '#map_canvas' ).height( $( window ).height() - $( '#map_canvas' ).position().top - 30 );
+
+    $( '#map_canvas' ).gmap({ 'center': '43.650652,-79.708003' });
     
-	$( '#map_canvas' ).gMap({ 
+    $( '#map_canvas' ).gmap().bind(
+    	'init', 
+    	function( event, map ) 
+    	{ 
+        	$( '#map_canvas' ).gmap(
+        		'addMarker', 
+        		{ 
+        		'position': '43.650652,-79.708003', 
+        		'bounds': true,
+        		} 
+        	).click(
+        		function() 
+        		{
+				    $( '#map_canvas' ).gmap( 'openInfoWindow', { 'content': 'TEXT_AND_HTML_IN_INFOWINDOW' }, this );
+        		}
+			);                                                                                                                                                                                                                
+    
+		    $( '#map_canvas' ).gmap( 'option', 'zoom', 15 );
+		    
+		    $( '#map_canvas' ).gmap( 'option', 'mapTypeId', google.maps.MapTypeId.HYBRID );
+		}
+	);
+
+/*	$( '#map_canvas' ).gmap({ 
 		'latitude': 43.650652,
 		'longitude': -79.708003, 
 		'maptype': 'SATELLITE',
@@ -236,7 +268,7 @@ function pg_map()
          	'streetViewControl': false,
          	'overviewMapControl': false
      	}
-	});
+	}); */
 }
 
 function pg_donate()
