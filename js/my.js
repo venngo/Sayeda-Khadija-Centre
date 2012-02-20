@@ -22,29 +22,6 @@ $( document ).bind(
     }
 );
 
-function onOnline()
-{
-    is_online = true;
-    
-    $( '#skc_header_about' ).show();
-    $( '#website' ).show();
-    $( '#email' ).show();
-}
-
-function onOffline()
-{
-    is_online = false;
-    
-    navigator.notification.alert(
-        'The Sayeda Khadija Centre app is switching to offline functionality.',
-        function()
-        {
-            $.mobile.changePage( $( '#pg_about' ) );
-        },
-        'Going Offline'
-    );
-}
-
 function onDeviceReady()
 {
     var networkState = navigator.network.connection.type;
@@ -55,13 +32,80 @@ function onDeviceReady()
     }
     else
     {
-            is_online = false;
+        is_online = false;
+        
         $.mobile.changePage( $( '#pg_about' ) );
     }
     
-    document.addEventListener( "online", onOnline, false );
+    document.addEventListener( 
+	    "online", 
+    	function onOnline()
+		{
+    		is_online = true;
     
-    document.addEventListener( "offline", onOffline, false );    
+	    	$( '#skc_header_about' ).show();
+    		$( '#website' ).show();
+    		$( '#email' ).show();
+		}, 
+		false 
+	);
+    
+    document.addEventListener( 
+    	"offline", 
+    	function ( event )
+		{
+    		is_online = false;
+    
+    		navigator.notification.alert(
+        		'The Sayeda Khadija Centre app is switching to offline functionality.',
+        		function()
+        		{
+            		$.mobile.changePage( $( '#pg_about' ) );
+        		},
+        		'Going Offline'
+    		);
+		},
+    	false 
+    );    
+
+	$( 'div.ui-page' ).live(
+		"swipeleft", 
+		function()
+		{
+			var nextpage = $( this ).next( 'div[data-role="page"]' );
+
+			// swipe using id of next page if exists
+			if ( nextpage.length > 0 ) 
+			{
+				$.mobile.changePage( 
+					nextpage, 
+					{
+                    	transition: 'slide',
+                    	reverse: false
+                	} 
+                );
+			}
+		}
+	);
+
+	$( 'div.ui-page' ).live(
+		"swiperight", function()
+		{
+			var prevpage = $( this ).prev( 'div[data-role="page"]' );
+		
+			// swipe using id of next page if exists
+			if ( prevpage.length > 0 ) 
+			{
+				$.mobile.changePage( 
+					prevpage, 
+					{
+                    	transition: 'slide',
+                    	reverse: false
+                	}
+                );
+			}
+		}
+	);
 }
 
 function pg_events()
@@ -242,6 +286,7 @@ function pg_about()
     }
 }
 
+/*
 function onJqReady()
 {
     //if ( $(window).height() < 480 )
@@ -252,33 +297,6 @@ function onJqReady()
         onDeviceReady,
         false
     );
-
-/*	$( 'div.ui-page' ).live(
-		"swipeleft", 
-		function()
-		{
-			var nextpage = $(this).next( 'div[data-role="page"]' );
-
-			// swipe using id of next page if exists
-			if ( nextpage.length > 0 ) 
-			{
-				$.mobile.changePage( nextpage, 'slide' );
-			}
-		}
-	);
-
-	$( 'div.ui-page' ).live(
-		"swiperight", function()
-		{
-			var prevpage = $(this).prev('div[data-role="page"]');
-		
-			// swipe using id of next page if exists
-			if ( prevpage.length > 0 ) 
-			{
-				$.mobile.changePage( prevpage, 'slide', true );
-			}
-		}
-	); */
    
     $( '#pg_events' ).live(
         'pageshow',
@@ -454,4 +472,4 @@ function onJqReady()
 
 $( document ).ready(
     onJqReady
-);
+); */
