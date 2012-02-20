@@ -3,7 +3,7 @@
  *
  * @url		http://github.com/faithoflifedev/Sayeda-Khadija-Centre
  * @author	Faith of Life Developer <faithoflifedev@gmail.com>
- * @version	2.0.2
+ * @version	2.0.3
 **/
 
 var is_online = true;
@@ -27,7 +27,7 @@ window.addEventListener(
     		false
     	);
     	
-    	//onDeviceReady();
+    	onDeviceReady();
 	}, 
 	false
 );
@@ -43,7 +43,7 @@ $( '#pg_salaat' ).live(
 );
     
 $( '#pg_map' ).live(
-    'pageinit',
+    'pageshow',
     pg_map
 );
     
@@ -72,9 +72,18 @@ function onDeviceReady()
         $.mobile.changePage( $( '#pg_about' ) );
     }
     
+    document.addEventListener(
+    	"backbutton", 
+    	function( event )
+    	{
+    		navigator.app.exitApp();
+    	}, 
+    	false
+    );
+    
     document.addEventListener( 
 	    "online", 
-    	function onOnline()
+    	function( event )
 		{
     		is_online = true;
     
@@ -87,7 +96,7 @@ function onDeviceReady()
     
     document.addEventListener( 
     	"offline", 
-    	function ( event )
+    	function( event )
 		{
     		is_online = false;
     
@@ -105,7 +114,7 @@ function onDeviceReady()
     
 	$( 'div.ui-page' ).live(
 		"swipeleft", 
-		function()
+		function( event )
 		{
 			var nextpage = $( this ).next( 'div[data-role="page"]' );
 
@@ -124,7 +133,8 @@ function onDeviceReady()
 	);
 
 	$( 'div.ui-page' ).live(
-		"swiperight", function()
+		"swiperight", 
+		function( event )
 		{
 			var prevpage = $( this ).prev( 'div[data-role="page"]' );
 		
@@ -141,6 +151,10 @@ function onDeviceReady()
 			}
 		}
 	);
+
+    $( '#refreshEvents' ).click( pg_events );
+
+    $( '#refreshSalaat' ).click( pg_salaat );
 }
 
 function pg_events()
@@ -270,9 +284,9 @@ function pg_salaat()
 
 function pg_map()
 {
-	$( '#map_canvas' ).width( window.innerWidth - $('#map_canvas').position().left - $('#map_canvas').offset().left );
+	$( '#map_canvas' ).width( $( document ).width() - $('#map_canvas').position().left - $('#map_canvas').offset().left );
    
-    $( '#map_canvas' ).height( $( window ).height() - $( '#map_canvas' ).position().top - 30 );
+    $( '#map_canvas' ).height( $( document ).height() - $( '#map_canvas' ).position().top - 30 );
 
     $( '#map_canvas' ).gmap({ 'center': '43.650652,-79.708003' });
     

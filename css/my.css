@@ -20,10 +20,6 @@
     margin-right: auto;
 }
 
-input.error {
-    border: 2px solid red;
-}
-
 table {
     width: 100%;
 }
@@ -64,6 +60,11 @@ table td {
     margin-left: auto;
     margin-right: auto
 }
+
 .dwn {
     padding-top: 5px;
 }
+
+.txt_md {
+	font-size: 75%
+} 
