@@ -14,38 +14,6 @@ $.getScript( 'js/jqueryuimapservice.js' );
 $.getScript( 'js/jqueryyql.js' );
 $.getScript( 'phonegap.js' );
 
-if ( ! Connection )
-{
-	var Connection = {
-    	ETHERNET: 0
-	};
-
-	navigator.notification = {
-    	alert: function( msg, callback, title )
-	    {
-    	        alert( msg );
-        	    callback();
-	    }
-	};
-
-	navigator.network = {
-    	connection: {
-        	type: Connection.ETHERNET
-    	}
-	};
-
-	navigator.service = {
-    	contacts: {
-        	find: function( arr_fields, onSuccess, onError, options )
-        	{
-            	var arr_Contacts = [{ name: { givenName: 'Ho', familyName: 'Jo'}, addresses:[{ streetAddress: '', locality: '', region: '', postalCode: '' }] }];
-            
-            	onSuccess( arr_Contacts );
-        	}
-    	}
-	};
-}
-
 $( document ).bind(
     'deviceready',
     function()
