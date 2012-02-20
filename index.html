@@ -15,19 +15,20 @@
   </head>
   
   <body>
-<div id="pg_offline" data-role="dialog">
-    <div id="skc_header_offline" data-role="header" data-backbtn="false">
-        <h1 class="txt_sm">Offline</h1>
+  
+<div id="dlg_leaving" data-role="dialog"><!--  data-fullscreen='true' -->
+    <div id="skc_header_leaving" data-role="header">
+        <h1 class="txt_sm">Notice</h1>
     </div>
-    
     <div data-role="content">
-        <p>The Sayeda Khadija Centre app has been switched to offline functionality.</p>
+        <p>This action will redirect you to the Sayeda Khadija Centre web site by opening a browser window on your device.</p>
+            <a href="#" id='continue' data-role="button">Continue</a>
     </div>
 </div>
 
 
 <div id="pg_events" data-role="page">
-    <div id="skc_header_events" data-role="header" data-backbtn="false">
+    <div id="skc_header_events" data-role="header" data-backbtn="false" data-theme="b">
         <a href="#pg_events" id="refreshEvents" data-icon="refresh" data-iconpos="notext" class="ui-btn-right" rel="external">Refresh</a>
         <h1 class="txt_sm">Events</h1>
         <div data-role="navbar">
@@ -47,19 +48,8 @@
 </div>
 
 
-<div id="dlg_leaving" data-role="page" data-fullscreen='true'>
-    <div id="skc_header_leaving" data-role="header">
-        <h1 class="txt_sm">Notice</h1>
-    </div>
-    <div data-role="content">
-        <p>This action will redirect you to the Sayeda Khadija Centre web site by opening a browser window on your device.</p>
-            <a href="#" id='continue' data-role="button">Continue</a>
-    </div>
-</div>
-
-
 <div id="pg_salaat" data-role="page">
-    <div id="skc_header_salaat" data-role="header" data-backbtn="false">
+    <div id="skc_header_salaat" data-role="header" data-backbtn="false" data-theme="b">
         <a href="#pg_salaat" id="refreshSalaat" data-icon="refresh" data-iconpos="notext" class="ui-btn-right" rel="external">Refresh</a>
         <h1 class="txt_sm">Salaat Times</h1>
         <div data-role="navbar">
@@ -134,7 +124,7 @@
 
 
 <div id="pg_map" data-role="page">
-    <div id="skc_header_map" data-role="header" data-backbtn="false">
+    <div id="skc_header_map" data-role="header" data-backbtn="false" data-theme="b">
         <h1 class="txt_sm">Map</h1>
         <div data-role="navbar">
             <ul>
@@ -154,7 +144,7 @@
 </div>
 
 <div id="pg_donate" data-role="page">
-    <div id="skc_header_donate" data-role="header">
+    <div id="skc_header_donate" data-role="header" data-theme="b">
         <h1 class="txt_sm">Donate</h1>
         <div data-role="navbar">
             <ul>
@@ -180,7 +170,7 @@
 </div>
 
 <div id="pg_about" data-role="page">
-    <div id="skc_header_about" data-role="header" data-backbtn="false">
+    <div id="skc_header_about" data-role="header" data-backbtn="false" data-theme="b">
         <h1 class="txt_sm">About</h1>
         <div data-role="navbar">
             <ul>

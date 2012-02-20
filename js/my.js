@@ -242,7 +242,7 @@ function pg_map()
         	).click(
         		function() 
         		{
-				    $( '#map_canvas' ).gmap( 'openInfoWindow', { 'content': '<div align="center"><img width="200" src="images/mosquepic500x160.jpg" /><br/><br/>7150 Edwards Blvd. Mississauga, Ontario</div>' }, this );
+				    $( '#map_canvas' ).gmap( 'openInfoWindow', { 'content': '<div align="center"><img width="120" src="images/mosquepic500x160.jpg" /><br/><br/>7150 Edwards Blvd. Mississauga, Ontario</div>' }, this );
         		}
 			);                                                                                                                                                                                                                
     
