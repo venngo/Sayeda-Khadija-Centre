@@ -14,12 +14,47 @@ $.getScript( 'js/jqueryuimapservice.js' );
 $.getScript( 'js/jqueryyql.js' );
 $.getScript( 'phonegap.js' );
 
-$( document ).bind(
-    'deviceready',
-    function()
-    {
-        onDeviceReady();
-    }
+window.addEventListener(
+	'load', 
+	function () 
+	{
+    	document.addEventListener(
+    		'deviceready', 
+    		function () 
+    		{
+        		onDeviceReady();
+    		},
+    		false
+    	);
+    	
+    	//onDeviceReady();
+	}, 
+	false
+);
+
+$( '#pg_events' ).live(
+    'pageinit',
+    pg_events
+);
+
+$( '#pg_salaat' ).live(
+    'pageinit',
+    pg_salaat
+);
+    
+$( '#pg_map' ).live(
+    'pageinit',
+    pg_map
+);
+    
+$( '#pg_donate' ).live(
+    'pageinit',
+    pg_donate
+);
+    
+$( '#pg_about' ).live(
+    'pageinit',
+    pg_about
 );
 
 function onDeviceReady()
@@ -66,8 +101,8 @@ function onDeviceReady()
     		);
 		},
     	false 
-    );    
-
+    );   
+    
 	$( 'div.ui-page' ).live(
 		"swipeleft", 
 		function()
@@ -285,191 +320,3 @@ function pg_about()
         $( '#email' ).hide();
     }
 }
-
-/*
-function onJqReady()
-{
-    //if ( $(window).height() < 480 )
-    //    $( 'head' ).append( '<link rel="stylesheet" href="css/small.css"/>' );
-    
-    document.addEventListener(
-        "deviceready",
-        onDeviceReady,
-        false
-    );
-   
-    $( '#pg_events' ).live(
-        'pageshow',
-        pg_events
-    );
-    
-    $( '#pg_events' ).live(
-        'swipeleft',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_salaat' ),
-                {
-                    transition: 'slide',
-                    reverse: false
-                }
-            );
-        }
-    );
-    
-    $( '#pg_events' ).live(
-        'swiperight',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_about' ),
-                {
-                    transition: 'slide',
-                    reverse: true
-                }
-            );
-        }
-    );
-        
-    $( '#pg_salaat' ).live(
-        'pageshow',
-        pg_salaat
-    );
-    
-    $( '#pg_salaat' ).live(
-        'swipeleft',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_map' ),
-                {
-                    transition: 'slide',
-                    reverse: false
-                }
-            );
-        }
-    );
-    
-    $( '#pg_salaat' ).live(
-        'swiperight',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_events' ),
-                {
-                    tansition: 'slide',
-                    reverse: true
-                }
-            );
-        }
-    );
-    
-    $( '#pg_map' ).live(
-        'pageshow',
-        pg_map
-    );
-    
-    $( '#pg_map' ).live(
-        'swipeleft',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_donate' ),
-                {
-                    tansition: 'slide',
-                    reverse: false
-                }  
-            );
-        }
-    );
-    
-    $( '#pg_map' ).live(
-        'swiperight',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_salaat' ),
-                {
-                    tansition: 'slide',
-                    reverse: true
-                }
-            );
-        }
-    );
-    
-    $( '#pg_donate' ).live(
-        'pageshow',
-        pg_donate
-    );
-    
-    $( '#pg_donate' ).live(
-        'swipeleft',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_about' ),
-                {
-                    transition: 'slide',
-                    reverse: false
-                }
-            );
-        }
-    );
-    
-    $( '#pg_donate' ).live(
-        'swiperight',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_map' ),
-                {
-                    transition: 'slide',
-                    reverse: true
-                }
-            );
-        }
-    );
-
-    $( '#pg_about' ).live(
-        'pageshow',
-        pg_about
-    );
-    
-    $( '#pg_about' ).live(
-        'swipeleft',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_events' ),
-                {
-                    transition: 'slide',
-                    reverse: false
-                }
-            );
-        }
-    );
-    
-    $( '#pg_about' ).live(
-        'swiperight',
-        function()
-        {
-            $.mobile.changePage(
-                $( '#pg_donate' ),
-                {
-                    transition: 'slide',
-                    reverse: true
-                }
-            );
-        }
-    );
-        
-    $( '#refreshEvents' ).click( pg_events );
-
-    $( '#refreshSalaat' ).click( pg_salaat );
-    
-    pg_events();
-}
-
-$( document ).ready(
-    onJqReady
-); */
