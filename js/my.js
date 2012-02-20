@@ -8,9 +8,10 @@
 
 var is_online = true;
 
-$.getScript( 'js/jquerymobile10min.js' );
+$.getScript( 'js/jquerymobile101min.js' );
+$.getScript( 'js/jqueryuimap.js' );
+$.getScript( 'js/jqueryuimapservice.js' );
 $.getScript( 'js/jqueryyql.js' );
-$.getScript( 'js/jqueryuimapmin.js' );
 $.getScript( 'phonegap.js' );
 
 if ( ! Connection )
@@ -241,7 +242,7 @@ function pg_map()
         	).click(
         		function() 
         		{
-				    $( '#map_canvas' ).gmap( 'openInfoWindow', { 'content': 'TEXT_AND_HTML_IN_INFOWINDOW' }, this );
+				    $( '#map_canvas' ).gmap( 'openInfoWindow', { 'content': '<div align="center"><img width="200" src="images/mosquepic500x160.jpg" /><br/><br/>7150 Edwards Blvd. Mississauga, Ontario</div>' }, this );
         		}
 			);                                                                                                                                                                                                                
     
@@ -250,25 +251,6 @@ function pg_map()
 		    $( '#map_canvas' ).gmap( 'option', 'mapTypeId', google.maps.MapTypeId.HYBRID );
 		}
 	);
-
-/*	$( '#map_canvas' ).gmap({ 
-		'latitude': 43.650652,
-		'longitude': -79.708003, 
-		'maptype': 'SATELLITE',
-		'zoom': 15,
-		'markers': [{
-			'latitude': 43.650652,
-			'longitude': -79.708003,
-			'html': 'Sayeda Khadija Centre' }],
-		'controls': {
-        	'panControl': true,
-         	'zoomControl': false,
-         	'mapTypeControl': true,
-         	'scaleControl': false,
-         	'streetViewControl': false,
-         	'overviewMapControl': false
-     	}
-	}); */
 }
 
 function pg_donate()
