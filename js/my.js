@@ -8,33 +8,24 @@
 
 var is_online = true;
 
-$.getScript( 'js/jquerymobile101min.js' );
-$.getScript( 'js/jqueryuimap.js' );
-$.getScript( 'js/jqueryuimapservice.js' );
-$.getScript( 'js/jqueryyql.js' );
-$.getScript( 'phonegap.js' );
-
 window.addEventListener(
 	'load', 
 	function () 
 	{
     	document.addEventListener(
     		'deviceready', 
-    		function () 
-    		{
-        		onDeviceReady();
-    		},
+    		onDeviceReady,
     		false
     	);
     	
-    	onDeviceReady();
+//    	onDeviceReady();
 	}, 
 	false
 );
 
 $( '#pg_events' ).live(
     'pageinit',
-    pg_events
+    startup
 );
 
 $( '#pg_salaat' ).live(
@@ -57,61 +48,8 @@ $( '#pg_about' ).live(
     pg_about
 );
 
-function onDeviceReady()
-{
-    var networkState = navigator.network.connection.type;
-    
-    if ( networkState == Connection.ETHERNET || networkState == Connection.WIFI || networkState == Connection.CELL_2G || networkState == Connection.CELL_3G || networkState == Connection.CELL_4G )
-    {    
-        is_online = true;
-    }
-    else
-    {
-        is_online = false;
-        
-        $.mobile.changePage( $( '#pg_about' ) );
-    }
-    
-    document.addEventListener(
-    	"backbutton", 
-    	function( event )
-    	{
-    		navigator.app.exitApp();
-    	}, 
-    	false
-    );
-    
-    document.addEventListener( 
-	    "online", 
-    	function( event )
-		{
-    		is_online = true;
-    
-	    	$( '#skc_header_about' ).show();
-    		$( '#website' ).show();
-    		$( '#email' ).show();
-		}, 
-		false 
-	);
-    
-    document.addEventListener( 
-    	"offline", 
-    	function( event )
-		{
-    		is_online = false;
-    
-    		navigator.notification.alert(
-        		'The Sayeda Khadija Centre app is switching to offline functionality.',
-        		function()
-        		{
-            		$.mobile.changePage( $( '#pg_about' ) );
-        		},
-        		'Going Offline'
-    		);
-		},
-    	false 
-    );   
-    
+function startup()
+{	
 	$( 'div.ui-page' ).live(
 		"swipeleft", 
 		function( event )
@@ -151,10 +89,74 @@ function onDeviceReady()
 			}
 		}
 	);
+		
+	$( '#continue' ).click(
+		function( event )
+		{
+			$( '#dlg_leaving' ).dialog ( 'close' );
+		}
+	);
 
     $( '#refreshEvents' ).click( pg_events );
 
     $( '#refreshSalaat' ).click( pg_salaat );
+    
+    pg_events();
+}
+
+function onDeviceReady()
+{
+   	var networkState = navigator.network.connection.type;
+    
+    if ( networkState == Connection.ETHERNET || networkState == Connection.WIFI || networkState == Connection.CELL_2G || networkState == Connection.CELL_3G || networkState == Connection.CELL_4G )
+    {    
+        is_online = true;
+    }
+    else
+    {
+        is_online = false;
+    }
+    
+    document.addEventListener( 
+	    "online", 
+    	function( event )
+		{
+    		is_online = true;
+    
+	    	$( '#skc_header_about' ).show();
+    		$( '#website' ).show();
+    		$( '#email' ).show();
+		}, 
+		false 
+	);
+    
+    document.addEventListener( 
+    	"offline", 
+    	function( event )
+		{
+    		is_online = false;
+    
+    		navigator.notification.alert(
+        		'The Sayeda Khadija Centre app is switching to offline functionality.',
+        		function()
+        		{
+            		$.mobile.changePage( $( '#pg_about' ) );
+        		},
+        		'Going Offline'
+    		);
+		},
+    	false 
+    );   
+    
+    document.addEventListener(
+    	"backbutton", 
+    	function( event )
+    	{
+    		navigator.app.exitApp();
+    	}, 
+    	false
+    );
+    
 }
 
 function pg_events()
