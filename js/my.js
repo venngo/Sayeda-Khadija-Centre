@@ -204,11 +204,11 @@ function pg_events()
             	arr_data,
                 function( index, item )
                 {
-                    var arr_title = item.title.split( ':' );
+                    var arr_title = item.title.split( ' : ' );
                  
-                    dt = arr_title[0] + ':' + arr_title[1];
+                    dt = arr_title[0];
                  
-                    title = arr_title[2];
+                    title = arr_title[1];
                  
                     if ( dt != last_dt )
                     {
