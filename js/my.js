@@ -18,7 +18,7 @@ window.addEventListener(
     		false
     	);
     	
-    	onDeviceReady();
+//    	onDeviceReady();
 	}, 
 	false
 );
