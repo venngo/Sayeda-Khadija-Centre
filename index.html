@@ -23,17 +23,6 @@
   
   <body>
 
-<div id="dlg_leaving" data-role="dialog">
-    <div id="skc_header_leaving" data-role="header">
-        <h1 class="txt_sm">Notice</h1>
-    </div>
-    <div data-role="content">
-        <p>This action will redirect you to the Sayeda Khadija Centre web site by opening a browser window on your device.</p>
-        <a href="#" class="ui-link" rel="external" target="_blank" id='continue' data-role="button">Continue</a>
-    </div>
-</div>
-
-
 <div id="pg_events" data-role="page">
     <div id="skc_header_events" data-role="header" data-backbtn="false" data-theme="b">
         <a href="#pg_events" id="refreshEvents" data-icon="refresh" data-iconpos="notext" class="ui-btn-right" rel="external">Refresh</a>
@@ -170,11 +159,11 @@
     <div data-role="content">
         <img class="cntr_blk" src="images/support.png" />
         <ul id='skc_type' data-role="listview">
-            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a href="#dlg_leaving">Sadaqa</a></li>
-            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a href="#dlg_leaving">Project Donation</a></li>
-            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a href="#dlg_leaving">Zakat</a></li>
-            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a href="#dlg_leaving">Zakat-ul-Fittr</a></li>
-            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a href="#dlg_leaving">Musalla</a></li>
+            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a data-rel="dialog" href="#dlg_leaving">Sadaqa</a></li>
+            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a data-rel="dialog" href="#dlg_leaving">Project Donation</a></li>
+            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a data-rel="dialog" href="#dlg_leaving">Zakat</a></li>
+            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a data-rel="dialog" href="#dlg_leaving">Zakat-ul-Fittr</a></li>
+            <li data-identity="http://www.sayedakhadijacentre.com/index.php?option=com_content&id=12"><a data-rel="dialog" href="#dlg_leaving">Musalla</a></li>
         </ul>
     </div>
 </div>
@@ -201,6 +190,16 @@
         <p><a href="tel: +19055645509" data-role="button">call</a></p>
         <p class="txt_md dwn">As of early August 2009, the Sayeda Khadija Centre has become the official home of Faith of Life Network, an organization founded by Imam Hamid Slimi in 2005 to promote the positive value of Islam for Muslims and non-Muslims alike in Canada and around the world, by building communities through shared religious observance, quality educational programs, mutual support and networking, and service to humanity.</p>
     </div>
+
+	<div id="dlg_leaving">
+    	<div id="skc_header_leaving" data-role="header">
+        	<h1 class="txt_sm">Notice</h1>
+    	</div>
+    	<div data-role="content">
+        	<p>This action will redirect you to the Sayeda Khadija Centre web site by opening a browser window on your device.</p>
+        	<a href="#" class="ui-link" rel="external" target="_blank" id='continue' data-role="button">Continue</a>
+    	</div>
+	</div>
 </div>
   </body>
 </html>
