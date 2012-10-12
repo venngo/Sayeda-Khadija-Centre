@@ -16,26 +16,49 @@
 	<author href="http://www.faithoflife.net" email="faithoflifedev@gmail.com">
 		Faith of Life Network - Developer
 	</author>
-	
-	<access uri="*" />
-
-	<icon src="assets/icon72.png" width="72" height="72" />
-	<icon src="assets/icon48.png" width="48" height="48" />
-	<icon src="assets/icon36.png" width="36" height="36" />
-
-	<icon src="assets/icon57.png" width="57" height="57"/>
-	<icon src="assets/icon72.png" width="72" height="72"/>
-	<!-- <icon src="assets/icon114.png" width="114" height="114"/> -->
-
-    	<gap:splash src="assets/splash.png" width="320" height="480" />
-    	<gap:splash src="assets/retina.png" width="640" height="960" />
-    	<gap:splash src="assets/ipadportrait.png" width="768" height="1004"/>
-	<gap:splash src="assets/ipadlandscape.png" width="1024" height="748"/>
-
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
-	<feature name="http://api.phonegap.com/1.0/network"/>
 
 	<preference name="orientation" value="default" />
 	
-	<!-- <gap:plugin name="ChildBrowser" /> -->
+	<access uri="*" />
+
+	<icon src="icon.png" />
+	
+	<!-- IOS -->
+	<icon src="assets/icon57.png" width="57" height="57"/>
+	<icon src="assets/icon72.png" width="72" height="72" gap:platform="ios" />
+	<icon src="assets/icon114.png" width="114" height="114"/>
+
+	<!-- Android -->
+	<icon src="assets/icon36.png" width="36" height="36" gap:platform="android" gap:density="ldpi" />
+	<icon src="assets/icon48.png" width="48" height="48" gap:platform="android" gap:density="mdpi" />
+	<icon src="assets/icon72.png" width="72" height="72" gap:platform="android" gap:density="hdpi"  />
+	<icon src="assets/icon96.png" width="96" height="96" gap:platform="android" gap:density="xhdpi" />
+	
+	<!-- Blackberry -->
+	<icon src="assets/icon72.png" gap:platform="blackberry" />
+	
+	<!-- Windows Phone -->
+	<icon src="assets/icon72.png" gap:platform="winphone" />
+	
+	<!-- Web OS -->
+	<icon src="assets/icon72.png" gap:platform="webos" />
+
+
+    	<gap:splash src="splash.png" />
+    	
+    	<!-- IOS -->
+    	<gap:splash src="assets/splash.png" width="320" height="480" />
+    	<gap:splash src="assets/retina.png" width="640" height="960" />
+	<gap:splash src="assets/ipadlandscape.png" width="1024" height="768"/>
+    	<gap:splash src="assets/ipadportrait.png" width="768" height="1024"/>
+
+    	<!-- Android -->
+    	<gap:splash src="assets/ldpi.png" gap:platform="android" gap:density="ldpi" />
+    	<gap:splash src="assets/splash.png" gap:platform="android" gap:density="mdpi" />
+    	<gap:splash src="assets/hdpi.png" gap:platform="android" gap:density="hdpi" />
+    	<!-- <gap:splash src="splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> -->
+
+
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
 </widget>
