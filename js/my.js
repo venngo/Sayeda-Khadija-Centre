@@ -268,7 +268,7 @@ function pg_salaat()
     );
     
     $.yql(
-        "select * from json where url = 'http://www.skcentre.com/~admin/salaat/st_get_iqama.php'",
+        "select * from json where url = 'http://www.sayedakhadijacentre.com/~admin/salaat/st_get_iqama.php'",
         {},
         function ( response )
         {
