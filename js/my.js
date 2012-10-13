@@ -83,7 +83,7 @@ function startup()
 					prevpage, 
 					{
                     	transition: 'slide',
-                    	reverse: false
+                    	reverse: true
                 	}
                 );
 			}
