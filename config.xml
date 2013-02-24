@@ -2,8 +2,7 @@
 <widget 
 	xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id = "net.faithoflife.SKC"
-	version = "2.1.0">
+	id = "net.faithoflife.SKC">
 	
 	<name>
 		Sayeda Khadija Centre
