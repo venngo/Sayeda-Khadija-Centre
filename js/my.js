@@ -172,7 +172,7 @@ function pg_events()
     $.mobile.showPageLoadingMsg();
     
     $.yql(
-        "select * from feed where url = 'http://www.sayedakhadijacentre.com/index.php?option=com_jevents&task=modlatest.rss&format=feed&type=rss&modid=38'",
+        "select * from feed where url = 'http://www.sayedakhadijacentre.com/index.php?option=com_jevents&task=modlatest.rss&format=feed&type=rss&modid=129'",
         {},
         function ( response )
         {
@@ -228,18 +228,33 @@ function pg_events()
 
 function pg_salaat()
 {
+	var HIJRI_MONTHS = [
+		'Muharram',
+		'Safar',
+		'Rabi Al-Awaal',
+		'Rabi Al-Akhar',
+		'Jumada Al-Awwal',
+		'Jumada Al-Akhir',
+		'Rajab',
+		'Shaban',
+		'Ramadan',
+		'Shawwal',
+		'Dhul-Qedah',
+		'Dhul-Hijjah'
+	];
+	
     $.mobile.showPageLoadingMsg();
     
-    $.yql(
-        "select * from json where url = 'http://www.sayedakhadijacentre.com/~admin/salaat/st_get_salaat.php'",
-        {},
-        function ( response )
-        {
-            $.mobile.hidePageLoadingMsg();
-          
-              var data = response.query.results.json;
-          
-              var arr_maghrib = data.maghrib.split( /[: ]/ );
+    $.ajax({
+  		url: "time_" + moment().format( "YYYY-MM-DD" ) + ".txt" // "http://www.sayedakhadijacentre.com/cache/time_2012-02-24"
+	}).done( 
+		function ( data ) 
+		{
+  			salat_data = unserialize( data );
+
+			alert( salat_data.a_fajr );
+
+              var arr_maghrib = salat_data.a_maghrib.split( /[: ]/ );
           
               maghrib_hr = parseInt( arr_maghrib[0] );
           
@@ -255,33 +270,26 @@ function pg_salaat()
               if ( maghrib_min < 10 )
                   maghrib_min = '0' + maghrib_min;
           
-              $( '#fajr_s' ).html( data.fajr + ' AM' );
-              $( '#sunr_s' ).html( data.sunrise + ' AM' );
-              $( '#dhuhr_s' ).html( data.dhuhr + ' PM' );
-              $( '#asr_s' ).html( data.asr + ' PM' );
-              $( '#mag_s' ).html( data.maghrib + ' PM' );
+              $( '#fajr_s' ).html( salat_data.a_fajr );
+              $( '#sunr_s' ).html( salat_data.sunrise );
+              $( '#dhuhr_s' ).html( salat_data.a_dhuhr );
+              $( '#asr_s' ).html( salat_data.a_asr );
+              $( '#mag_s' ).html( salat_data.a_maghrib );
               $( '#mag_i' ).html( maghrib_hr + ':' + maghrib_min + ' PM' );
-              $( '#isha_s' ).html( data.isha + ' PM' );
-              $( '#h_dt' ).html( data.hijri );
-              $( '#g_dt' ).html( data.date );
-        }
-    );
-    
-    $.yql(
-        "select * from json where url = 'http://www.sayedakhadijacentre.com/~admin/salaat/st_get_iqama.php'",
-        {},
-        function ( response )
-        {
-            var data = response.query.results.json;
-          
+              $( '#isha_s' ).html( salat_data.a_isha );
+              $( '#jum1' ).html( salat_data.jumah_1 );
+              $( '#jum2' ).html( salat_data.jumah_2 );
+              $( '#h_dt' ).html( salat_data.hijri.day + ' ' + HIJRI_MONTHS[salat_data.hijri.month - 1] + ' ' + salat_data.hijri.year );
+              $( '#g_dt' ).html( salat_data.today );
+
               var dst = ( ( new Date() ).getTimezoneOffset() / 60 ) - 4;
           
-              $( '#fajr_i' ).html( data.fajr );
+              $( '#fajr_i' ).html( salat_data.i_fajr );
               $( '#dhuhr_i' ).html( ( dst == 1 ) ? '1:00 PM' : '1:30 PM' );
-              $( '#asr_i' ).html( data.asr );
-              $( '#isha_i' ).html( data.isha );
-        }
-    );
+              $( '#asr_i' ).html( salat_data.i_asr );
+              $( '#isha_i' ).html( salat_data.i_isha );
+		}
+	);   
 }
 
 function pg_map()

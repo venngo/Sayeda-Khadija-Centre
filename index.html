@@ -16,6 +16,9 @@
 	<script type="text/javascript" src="js/jqueryuimapservice.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/jqueryyql.js" charset="utf-8"></script>
 
+	<script type="text/javascript" src="js/moment.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/php_unserialize.js" charset='utf-8'></script>
+
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="js/my.js" charset='utf-8'></script>
 	
@@ -71,11 +74,11 @@
             </thead>
 
             <tfoot>
-<!--
+
                 <tr>
                     <td colspan="3"><div id='h_dt' class='bkg'></div></td>
                 </tr>
--->
+
                 <tr>
                     <td colspan="3"><div id='g_dt' class='bkg'></div></td>
                 </tr>
@@ -112,8 +115,13 @@
                     <td><div id='isha_i'></div></td>
                 </tr>
                 <tr>
-                    <th scope="row">Jumah</th>
-                    <td>1:30 PM</td>
+                    <th scope="row">1st Jumah</th>
+                    <td><div id='jum1'></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">2nd Jumah</th>
+                    <td><div id='jum2'></div></td>
                     <td></td>
                 </tr>
             </tbody>
