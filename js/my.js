@@ -246,7 +246,7 @@ function pg_salaat()
     $.mobile.showPageLoadingMsg();
     
     $.ajax({
-  		url: "time_" + moment().format( "YYYY-MM-DD" ) + ".txt" // "http://www.sayedakhadijacentre.com/cache/time_2012-02-24"
+  		url: "http://www.sayedakhadijacentre.com/cache/time_" + moment().format( "YYYY-MM-DD" ) + ".txt" // "time_" + moment().format( "YYYY-MM-DD" ) + ".txt"
 	}).done( 
 		function ( data ) 
 		{
